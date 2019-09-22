@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { PureComponent} from 'react'
 
-class ListComponent extends React.Component {
+class ListComponent extends PureComponent {
   constructor (props) {
     super(props); //Should call super(props) to allow to use this and props values
     this.state = { items: props.items }    
   }
-
-  shouldComponentUpdate (nextProps) {
-    return nextProps.items !== this.props.items
-  }
+  
+  // Not needed since we are using PureComponent and it will update only changed <li> component
+  //  shouldComponentUpdate (nextProps) {
+  //    return nextProps.items !== this.props.items
+  // }
 
   //Should use 
   //this.handleClick = this.handleClick.bind(this) or use arrow functions to use lexical scope
