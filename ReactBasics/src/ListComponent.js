@@ -1,4 +1,5 @@
 import React, { PureComponent} from 'react'
+import ListItem from './ListItem';
 
 class ListComponent extends PureComponent {
   constructor (props) {
@@ -6,22 +7,17 @@ class ListComponent extends PureComponent {
     this.state = { items: props.items }    
   }
   
-  // Not needed since we are using PureComponent and it will update only changed <li> component
-  //  shouldComponentUpdate (nextProps) {
-  //    return nextProps.items !== this.props.items
-  // }
-
-  //Should use 
-  //this.handleClick = this.handleClick.bind(this) or use arrow functions to use lexical scope
-  handleClick = (item) => {
-    alert("Clicked item: " + item.name);
-  }
-
+  // Not needed since we are using PureComponent and it will update only changed <li> component because when items changes it points to new reference  
+  // shouldComponentUpdate (nextProps) {  
+  //     return nextProps.items !== this.props.items
+  //  }
+    
   renderElement (item) {
       //Warning only: should use key for each <li></li> component to differentiate react which components changes during rerender 
       //Recommeded: Should use on item level data which has unique id, name instead of index if the order of item changes
       //Using index as key is antipattern in react
-    return <li key={item.id}  style={{ backgroundColor: 'white', height: 40 }} onClick={() => this.handleClick(item)}>{item.name} </li>
+    // return <ListItem key={item.id}  >{item.name} </ListItem>
+    return <ListItem key={item.id} item={item}></ListItem>
   }
 
   render () {
